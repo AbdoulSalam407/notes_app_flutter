@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 import 'notes_list_screen.dart';
 
@@ -15,6 +16,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   String? _errorText;
   bool _isSubmitting = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _usernameController.text = 'admin';
+    _passwordController.text = '1234';
+  }
 
   @override
   void dispose() {
@@ -66,9 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Mes Notes'),
-      ),
+      appBar: AppBar(title: const Text('Mes Notes')),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -83,8 +89,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     borderRadius: BorderRadius.circular(16),
                     child: AspectRatio(
                       aspectRatio: 16 / 9,
-                      child: Image.network(
-                        'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=60',
+                      child: Image.asset(
+                        'assets/images/login_banner.png',
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -112,8 +118,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 10),
                     Text(
                       _errorText!,
-                      style:
-                          TextStyle(color: Theme.of(context).colorScheme.error),
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.error,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -132,8 +139,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             ? const SizedBox(
                                 height: 18,
                                 width: 18,
-                                child:
-                                    CircularProgressIndicator(strokeWidth: 2),
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
                               )
                             : const Text('Connexion'),
                       ),
